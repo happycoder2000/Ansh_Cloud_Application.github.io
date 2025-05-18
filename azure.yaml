@@ -1,0 +1,6 @@
+name: calculator-app
+services:
+  calculator:
+    project: .
+    language: python
+    host: appservice
