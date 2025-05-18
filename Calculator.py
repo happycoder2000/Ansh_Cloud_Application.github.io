@@ -1,15 +1,35 @@
-n1 = int(input("Enter a number: "))
-n2 = int(input("Enter a second number: "))
-op = input("What operation do you want to perform: ")
-ans = ""
+# Calculator.py
+from flask import Flask, request, jsonify
 
-if op == "+":
-    ans = n1 + n2
-if op == "-":
-    ans = n1 - n2
-if op == "x" or op == "*":
-    ans = n1 * n2
-if op == "/":
-    ans = n1 / n2
+app = Flask(__name__)
 
-print(ans)
+@app.route('/calculate', methods=['POST'])
+def calculate():
+    data = request.json
+    n1 = data.get('n1')
+    n2 = data.get('n2')
+    op = data.get('op')
+
+    try:
+        n1 = int(n1)
+        n2 = int(n2)
+    except (ValueError, TypeError):
+        return jsonify({'error': 'Invalid numbers'}), 400
+
+    if op == '+':
+        result = n1 + n2
+    elif op == '-':
+        result = n1 - n2
+    elif op in ('*', 'x'):
+        result = n1 * n2
+    elif op == '/':
+        if n2 == 0:
+            return jsonify({'error': 'Division by zero'}), 400
+        result = n1 / n2
+    else:
+        return jsonify({'error': 'Invalid operation'}), 400
+
+    return jsonify({'result': result})
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
