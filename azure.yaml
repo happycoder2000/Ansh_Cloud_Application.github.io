@@ -1,4 +1,6 @@
 name: calculator-app
+infra:
+  path: infra
 services:
   calculator:
     project: .
