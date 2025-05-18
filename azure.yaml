@@ -1,8 +1,11 @@
-name: calculator-app
-infra:
-  path: infra
+name: calculator-flask-app
+metadata:
+  template: flask-app
 services:
-  calculator:
+  web:
     project: .
     language: python
     host: appservice
+infra:
+  provider: bicep
+  path: ./infra
