@@ -29,7 +29,6 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2022-09-01' = {
   }
 }
 
-// App Service (Web App)
 resource webApp 'Microsoft.Web/sites@2022-09-01' = {
   name: appName
   location: location
@@ -41,4 +40,7 @@ resource webApp 'Microsoft.Web/sites@2022-09-01' = {
     httpsOnly: true
   }
   kind: 'app,linux'
+  tags: {
+    'azd-service-name': 'web'
+  }
 }
