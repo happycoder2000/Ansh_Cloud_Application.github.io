@@ -25,7 +25,7 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2022-09-01' = {
     capacity: 1
   }
   properties: {
-    reserved: false
+    reserved: true
   }
 }
 
