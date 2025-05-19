@@ -14,13 +14,15 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2022-09-01' = {
   properties: {}
 }
 
-// App Service Plan
+// App Service Plan (changed to B1 SKU instead of F1)
 resource appServicePlan 'Microsoft.Web/serverfarms@2022-09-01' = {
   name: appServicePlanName
   location: location
   sku: {
-    name: 'F1'
-    tier: 'Free'
+    name: 'B1'
+    tier: 'Basic'
+    size: 'B1'
+    capacity: 1
   }
   properties: {
     reserved: false
@@ -34,7 +36,7 @@ resource webApp 'Microsoft.Web/sites@2022-09-01' = {
   properties: {
     serverFarmId: appServicePlan.id
     siteConfig: {
-      linuxFxVersion: 'PYTHON|3.11'
+      linuxFxVersion: 'PYTHON|3.9'
     }
     httpsOnly: true
   }
