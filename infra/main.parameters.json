@@ -6,7 +6,7 @@
       "value": "canadaeast"
     },
     "appName": {
-      "value": "Ansh_Cloud_Calculator"
+      "value": "Ansh-Cloud-Calculator"  // Changed to valid name with hyphens
     },
     "storageAccountName": {
       "value": "myflaskstorage123"
